@@ -78,7 +78,7 @@ button{font:inherit;color:inherit}
 .signs a span{display:block;background:linear-gradient(#f6e0a8,#e3c47f);border:3px solid #6e4627;border-radius:9px;padding:.5em .95em .4em;font:400 clamp(17px,1.82vw,20.6px)/1 var(--f-sign);text-align:center;white-space:nowrap;box-shadow:0 0 0 2px rgba(255,255,255,.9),0 5px 0 rgba(0,0,0,.25)}
 .signs a:hover,.signs a:focus-visible{animation:wiggle .5s}
 .signs a[aria-current="page"] span{background:linear-gradient(#ffb357,#f28a1e);color:#fff;border-color:#8a4a12}
-.signs a[aria-current="page"]{transform:scale(1.2)}.signs li:has(a[aria-current="page"]){position:relative;z-index:2;margin-inline:clamp(6px,1.2vw,14px)}
+.signs a[aria-current="page"]{transform:scale(1.15)}.signs li:has(a[aria-current="page"]){position:relative;z-index:2;margin-inline:clamp(6px,1.2vw,14px)}
 @keyframes sway{50%{transform:rotate(2.5deg)}}
 @keyframes wiggle{25%{transform:rotate(-10deg)}75%{transform:rotate(8deg)}}
 @media (max-width:480px){.signs ul{gap:3.5px;padding-inline:8px}.signs li{flex:0 1 auto;max-width:19.5%}.signs a span{white-space:normal;text-align:center;padding:5px 7px 3px;font-size:13px;border-width:2.5px}}
@@ -917,7 +917,7 @@ main{position:relative}
   /* every lap: a random route, a random speed and a random spot in the lane */
   function reroll(c){ c.rt=[-1,-1,0,1,1,2,2,3][Math.floor(Math.random()*8)]; c.st=routeStart(c.rt); c.en=routeEnd(c.rt); c.y=c.st; c.spd=190+Math.random()*225; c.lane=Math.random()*60-30; c.surge=Math.random()*6.3; }
   /* the rest of the racing crew */
-  const CREW=[['frog-lilypad',1],['beaver-raft',1.04,2],['raccoon-icecream',.8,2],['fox-canoe',1.1,2],['sloth-hammock',1.2,2],['kitten-paperboat',1,2],['cow-bucket',1,2],['lizard-log',1],['bluebird-walnut',.72],['frogs-duckfloat',1],['duckling-donut',.85],['chameleon-melon',.95],['owl-barrel',.72],['turtle-kayak',1],['cat-speedboat',1.15],['chameleon-teal',.92],['daisy-leaf',1]];
+  const CREW=[['frog-lilypad',1],['beaver-raft',1.04,2],['raccoon-icecream',.8,2],['fox-canoe',1.1,2],['sloth-hammock',1.2,2],['kitten-paperboat',1,2],['cow-bucket',1,2],['lizard-log',1.5],['bluebird-walnut',.72],['frogs-duckfloat',1],['duckling-donut',.85],['chameleon-melon',.95],['owl-barrel',.72],['turtle-kayak',1],['cat-speedboat',1.15],['chameleon-teal',.92],['daisy-leaf',1]];
   const crew=[]; const crewBox=$('#crewBox'); crewBox.appendChild(rider); rider.removeAttribute('aria-hidden');
   for(let i=0;i<20;i++){
     const [name,scl,set]=CREW[i%CREW.length], img=document.createElement('img');
