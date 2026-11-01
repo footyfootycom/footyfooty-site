@@ -385,13 +385,13 @@ main{position:relative}
 .cd-dial{position:absolute;left:50%;top:330px;width:560px;height:560px;margin:-280px 0 0 -280px}
 .cd-face{position:absolute;inset:60px;border-radius:50%;background:rgba(255,255,255,.28);border:3px dashed rgba(23,48,51,.3)}
 .cd-it{position:absolute;left:50%;top:50%;width:88px;height:88px;margin:-44px;border:0;padding:0;background:none;cursor:pointer;border-radius:50%}
-.cd-it .in{width:88px;height:88px;border-radius:50%;background:#fff;border:4px solid var(--c);box-shadow:0 0 0 3px #173033;overflow:hidden;display:grid;place-items:center}
+.cd-it .in{width:88px;height:88px;border-radius:50%;background:#fff;border:4px solid var(--c);box-shadow:0 0 0 3px #173033,0 0 0 6px #fff;overflow:hidden;display:grid;place-items:center}
 .cd-it img{width:120%;max-width:none;height:auto}
 .cd-it.face img{width:96%;margin-top:6%}
-.cd-it.on .in{background:#f6d36b;box-shadow:0 0 0 3px #173033,0 0 0 9px #fff}
+.cd-it.on .in{background:#f6d36b;box-shadow:0 0 0 3px #173033,0 0 0 10px #fff}
 .cd-it:focus-visible{outline:3px solid #fff;outline-offset:4px}
 .cd-needle{position:absolute;left:50%;top:10px;width:0;height:0;margin-left:-13px;border:13px solid transparent;border-top:20px solid #173033;z-index:4}
-.cd-info{position:absolute;left:50%;top:330px;width:364px;height:364px;margin:-182px 0 0 -182px;border-radius:50%;display:flex;flex-direction:column;align-items:center;justify-content:center;text-align:center;background:radial-gradient(circle at 50% 22%,#fff 30%,color-mix(in srgb,var(--sc,#ec5a97) 22%,#fffdf6) 100%);border:3px solid #173033;padding:22px 52px;box-shadow:0 6px 0 rgba(23,48,51,.35);z-index:3;color:#173033}
+.cd-info{position:absolute;left:50%;top:330px;width:364px;height:364px;margin:-182px 0 0 -182px;border-radius:50%;display:flex;flex-direction:column;align-items:center;justify-content:center;text-align:center;background:radial-gradient(circle at 50% 22%,#fff 30%,color-mix(in srgb,var(--sc,#ec5a97) 22%,#fffdf6) 100%);border:3px solid #173033;padding:22px 52px;box-shadow:0 0 0 6px #fff,0 9px 0 rgba(23,48,51,.3);z-index:3;color:#173033;scale:.85}
 .cd-info .pic{width:84px;height:70px;display:grid;place-items:center}
 .cd-info .pic img{max-width:100%;max-height:100%;width:auto;height:auto;filter:drop-shadow(0 5px 5px rgba(0,0,0,.2))}
 .cd-info .tag{font:700 10px var(--f-body);letter-spacing:.16em;color:#7a8f92;text-transform:uppercase;margin-top:4px}
@@ -410,7 +410,7 @@ main{position:relative}
 .cd-ctrl{position:absolute;left:50%;bottom:4px;transform:translateX(-50%);display:flex;gap:12px;z-index:4}
 .cd-ctrl button{font:400 22px/1 var(--f-display);width:48px;height:48px;border-radius:50%;border:3px solid #173033;background:#f6d36b;color:#173033;cursor:pointer;box-shadow:0 4px 0 #173033}
 .cd-ctrl button:active{transform:translateY(3px);box-shadow:0 1px 0 #173033}
-@media (max-width:640px){.cdial{height:460px}.cd-dial{top:215px;scale:.62}.cd-needle{top:4px}.cd-info{top:215px;scale:.62;padding:20px 46px}.cd-info .pic{width:100px;height:84px}.cd-info .tag{font-size:13px}.cd-info h3{font-size:36px}.cd-info p{font-size:18px}.cd-info .facts{display:none}.cd-info .st{width:220px;margin-top:8px}.cd-info .st div{font-size:13px;grid-template-columns:62px 1fr 28px}.cd-info .st i{height:12px}}
+@media (max-width:640px){.cdial{height:460px}.cd-dial{top:215px;scale:.62}.cd-needle{top:4px}.cd-info{top:215px;scale:.55;padding:20px 46px}.cd-info .pic{width:100px;height:84px}.cd-info .tag{font-size:13px}.cd-info h3{font-size:36px}.cd-info p{font-size:18px}.cd-info .facts{display:none}.cd-info .st{width:220px;margin-top:8px}.cd-info .st div{font-size:13px;grid-template-columns:62px 1fr 28px}.cd-info .st i{height:12px}}
 @media (prefers-reduced-motion:reduce){.cd-dial,.cd-it .in{transition:none}}
 /* info sheet */
 .sheet-bg{position:fixed;inset:0;z-index:72;display:grid;place-items:center;background:rgba(5,18,20,.62);backdrop-filter:blur(5px);padding:max(16px,env(safe-area-inset-top,0px)) max(16px,env(safe-area-inset-right,0px)) max(16px,env(safe-area-inset-bottom,0px)) max(16px,env(safe-area-inset-left,0px))}
