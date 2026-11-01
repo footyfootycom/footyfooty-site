@@ -839,7 +839,7 @@ main{position:relative}
   const descent=$('#ride-down'), valley=$('#valley'), pines=$('#pines'), bridges=$('#bridges');
   const dTitle=$('#dTitle'), bars=$('#bars'), peek=$('#peek');
   const waypoints=$$('.waypoint'), IW=768, IH=1376, rider=$('#rider');
-  const RIVER=[686,686,686,686,686,686,686,686,686,686,686,685,678,674,667,650,646,644,641,640,640,640,643,664,662,634,621,617,600,562,493,474,454,432,411,388,358,326,294,262,232,203,174,235,260,252,208,191,209,208,178,174,157,164,192,244,284,315,322,312,282,228,192,194,197,199,202,205,207,211,216,221,226,231,236,241,247,255,266,276,288,299,311,326,350,376,401,426,441,442,432,404,368,321,312,301,291,282,280]; let W,H,LW,LH,maxPan;
+  const RIVER=[686,686,686,686,686,686,686,686,686,686,686,685,678,676,673,670,663,655,641,640,640,640,643,664,662,634,621,617,600,562,493,474,454,432,411,388,358,326,294,262,232,203,174,235,260,252,208,191,209,208,178,174,157,164,192,244,284,315,322,312,282,228,192,194,197,199,202,205,207,211,216,221,226,231,236,241,247,255,266,276,288,299,311,326,350,376,401,426,441,442,432,404,368,321,312,301,291,282,280]; let W,H,LW,LH,maxPan;
   function size(){
     W=innerWidth; H=$('#stage').clientHeight||innerHeight; LW=Math.max(W,H*0.95); LH=LW*IH/IW; maxPan=Math.max(0,LW*3168/IW-H); valley.style.height=(LW*3168/IW)+'px'; valley.style.setProperty('--u',(LW/IW)+'px'); bridges.style.height=valley.style.height; bridges.style.setProperty('--u',(LW/IW)+'px');
     for(const e of [valley,pines,bridges]){ e.style.width=LW+'px'; e.style.marginLeft=(-LW/2)+'px'; }
