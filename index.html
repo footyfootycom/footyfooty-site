@@ -193,7 +193,13 @@ main{position:relative}
 .bookview .back h3{font-family:var(--f-display);font-size:clamp(20px,2.8vw,36px);line-height:1;color:var(--c2)}
 .bookview .back p{font-size:clamp(13px,1.3vw,16px);line-height:1.4;max-width:24ch}
 .bookview .close{position:absolute;top:max(14px,env(safe-area-inset-top,0px));right:max(14px,env(safe-area-inset-right,0px));width:46px;height:46px;border-radius:50%;border:0;background:#fff;color:#123;font:800 22px/1 var(--f-body);cursor:pointer;box-shadow:0 6px 0 rgba(0,0,0,.25)}
-@media (max-width:640px){.bookview .spread{--bw:min(46vw,40vh)} .bookview .back p{display:none}}
+.bv-wrap{position:relative;place-self:center;display:block;line-height:0}
+.bv-wrap video{cursor:pointer}
+.bv-play{position:absolute;inset:0;display:grid;place-items:center;font-size:54px;line-height:1;color:#fff;text-shadow:0 3px 12px rgba(0,0,0,.6);pointer-events:none}
+.bv-snd{position:absolute;right:10px;bottom:10px;font:700 12px/1 var(--f-body);letter-spacing:.04em;padding:7px 11px;border-radius:999px;border:2px solid #173033;background:#f6d36b;color:#173033;cursor:pointer;box-shadow:0 3px 0 #173033}
+.bv-snd[aria-pressed="false"]{background:#fff}
+@media (max-width:640px){.bookview{overflow:hidden} .bookview .spread{--bw:min(86vw,54vh);position:absolute;left:50%;top:50%;margin:calc(var(--bw)*-.8) 0 0 calc(var(--bw)*-1)} .bookview.open .spread{transform:translateX(calc(var(--bw)*-.5))} .bookview .pg video{width:calc(var(--bw)*.82)}
+  .bookview .lid{transition:transform .9s cubic-bezier(.6,0,.25,1),opacity .2s} .bookview.open .lid{opacity:0;pointer-events:none;transition:transform .9s cubic-bezier(.6,0,.25,1),opacity .35s .5s}}
 @media (prefers-reduced-motion:reduce){.bookview .spread,.bookview .lid{transition:none}}
 
 @keyframes bob{50%{transform:translateY(-8px) rotate(-1deg)}}
@@ -674,7 +680,7 @@ main{position:relative}
   <div class="bookview" id="bookview" role="dialog" aria-modal="true" aria-label="Storybook clip" hidden>
     <button class="close" type="button" id="bookClose" aria-label="Close book">×</button>
     <div class="spread" id="spread">
-      <div class="leaf pg"><video id="bookVid" playsinline controls preload="metadata"></video></div>
+      <div class="leaf pg"><div class="bv-wrap"><video id="bookVid" playsinline loop preload="auto"></video><span class="bv-play" id="bookPlayIc" aria-hidden="true" hidden>&#9654;</span><button type="button" class="bv-snd" id="bookSnd" aria-pressed="true">Sound on</button></div></div>
       <div class="leaf lid"><div class="front" id="lidFront"></div><div class="back"><img src="img/face.webp" alt="" width="294" height="255"><h3 id="bookTitle"></h3><p id="bookBlurb"></p></div></div>
     </div>
   </div>
@@ -981,12 +987,17 @@ main{position:relative}
     { const pv=lidFront.querySelector('video'), sv=bk.querySelector('video'); if(pv){ try{ const cv2=document.createElement('canvas'); cv2.width=sv.videoWidth||480; cv2.height=sv.videoHeight||854; cv2.getContext('2d').drawImage(sv,0,0,cv2.width,cv2.height); pv.poster=cv2.toDataURL('image/jpeg',.85); }catch(e){} pv.preload='auto'; pv.muted=true; pv.loop=true; pv.playsInline=true; try{pv.currentTime=sv.currentTime||0}catch(e){} pv.play().catch(()=>{}); } } $('#bookTitle').textContent=bk.dataset.title; $('#bookBlurb').textContent=bk.dataset.blurb;
     bookVid.src=bk.dataset.src; bookVid.currentTime=0; bookview.classList.remove('open'); bookview.hidden=false; document.body.style.overflow='hidden';
     blip(520); await wait(reduce?0:60); bookview.classList.add('open'); $('#bookClose').focus();
-    setTimeout(()=>{ bookVid.muted=false; bookVid.play().catch(()=>{}); }, reduce?0:650);
+    bookVid.muted=false; bookVid.play().catch(()=>{ bookVid.muted=true; bookVid.play().catch(()=>{}); }).finally(bvSync);
   }));
   async function closeBook(){ if(bookview.hidden) return; bookVid.pause(); bookview.classList.remove('open'); await wait(reduce?0:850); bookview.hidden=true; lidFront.innerHTML=''; bookVid.removeAttribute('src'); bookVid.load(); document.body.style.overflow=''; openBook&&openBook.focus(); }
   $('#bookClose').addEventListener('click',closeBook);
+  const bookSnd=$('#bookSnd'), bookPlayIc=$('#bookPlayIc');
+  function bvSync(){ bookSnd.textContent=bookVid.muted?'Sound off':'Sound on'; bookSnd.setAttribute('aria-pressed',String(!bookVid.muted)); bookPlayIc.hidden=!bookVid.paused||!bookVid.currentSrc; }
+  bookVid.addEventListener('play',bvSync); bookVid.addEventListener('pause',bvSync); bookVid.addEventListener('volumechange',bvSync);
+  bookVid.addEventListener('click',e=>{ e.stopPropagation(); if(bookVid.paused) bookVid.play().catch(()=>{}); else bookVid.pause(); });
+  bookSnd.addEventListener('click',e=>{ e.stopPropagation(); bookVid.muted=!bookVid.muted; if(bookVid.paused) bookVid.play().catch(()=>{}); });
   bookview.addEventListener('click',e=>{ if(e.target===bookview) closeBook(); });
-  spread.addEventListener('click',e=>{ if(!e.target.closest('video')) closeBook(); });
+  spread.addEventListener('click',e=>{ if(!e.target.closest('video,.bv-snd')) closeBook(); });
   addEventListener('keydown',e=>{ if(e.key==='Escape') closeBook(); });
   onShow.home=()=>{ size(); renderHero(); $$('#valley video').forEach(v=>v.play().catch(()=>{})); };
 
