@@ -851,7 +851,7 @@ main{position:relative}
     const p=reduce?0:heroP(), e=ease(p), pan=e*maxPan, zoom=1.12-.12*e;
     valley.style.transform=bridges.style.transform=`translate3d(0,${-pan}px,0) scale(${zoom})`; valley.style.transformOrigin=bridges.style.transformOrigin=`50% ${pan+H/2}px`;
     pines.style.transform=`translate3d(0,${-pan*1.1}px,0) scale(${zoom*(1+.18*e)})`; pines.style.transformOrigin=`50% ${pan*1.1+H}px`; pines.style.opacity=1-clamp(((pan+H)/(LW/IW)-1000)/260);
-    const t=clamp(p/.14); dTitle.style.opacity=1-t; dTitle.style.pointerEvents=t>.5?'none':'auto'; dTitle.style.transform=`translate(-50%,${-t*80}px) scale(${1+t*.2})`;
+    const t=clamp((p-.06)/.18); dTitle.style.opacity=1-t; dTitle.style.pointerEvents=t>.5?'none':'auto'; dTitle.style.transform=`translate(-50%,${-t*80}px) scale(${1+t*.2})`;
     bars.style.setProperty('--bar',`${Math.sin(clamp(p/.2)*Math.PI/2)*Math.min(56,H*.07)}px`);
     waypoints.forEach(w=>w.classList.toggle('on',p>=+w.dataset.from&&p<+w.dataset.to));
     const k=clamp((p-.86)/.11);
