@@ -44,7 +44,7 @@ button{font:inherit;color:inherit}
 
 /* =================== FOOTY BUBBLE NAV =================== */
 .post{position:fixed;right:max(18px,env(safe-area-inset-right,0px));bottom:calc(18px + env(safe-area-inset-bottom,0px));z-index:50;width:78px;height:78px}
-.post-top{position:absolute;inset:0;border-radius:50%;border:4px solid #fff;cursor:pointer;padding:0;background:#fff url(img/face.webp) 50% 58%/88% no-repeat;box-shadow:0 8px 22px rgba(0,0,0,.45),0 0 0 3px rgba(236,90,151,.0);transition:transform .25s cubic-bezier(.3,1.6,.5,1),box-shadow .25s;animation:nudge 6s ease-in-out 2s infinite}
+.post-top{position:absolute;inset:0;border-radius:50%;border:4px solid #fff;cursor:pointer;padding:0;background:#fff url(img/btn-footy.webp) 50% 50%/cover no-repeat;box-shadow:0 8px 22px rgba(0,0,0,.45),0 0 0 3px rgba(236,90,151,.0);transition:transform .25s cubic-bezier(.3,1.6,.5,1),box-shadow .25s;animation:nudge 6s ease-in-out 2s infinite}
 .post-top:hover,.post-top:focus-visible{transform:scale(1.08)}
 .post.open .post-top{animation:none;transform:scale(1.04);box-shadow:0 8px 22px rgba(0,0,0,.45),0 0 0 5px var(--pink)}
 @keyframes nudge{0%,88%,100%{transform:rotate(0)}91%{transform:rotate(8deg)}94%{transform:rotate(-8deg)}97%{transform:rotate(3deg)}}
