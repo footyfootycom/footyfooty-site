@@ -192,8 +192,7 @@ main{position:relative}
 .bookview .back{gap:12px;justify-content:center;text-align:left;align-items:stretch;padding:9% 10% 9% 11%}
 .bookview .back .bk-tag{font:700 11px/1 var(--f-body);letter-spacing:.16em;text-transform:uppercase;color:#8a7b5c}
 .bookview .back .bk-notes{list-style:none;margin:2px 0 0;padding:0;display:grid;gap:9px;font-size:clamp(12.5px,1.15vw,15px);line-height:1.35}
-.bookview .back .bk-notes li{position:relative;padding-left:22px}
-.bookview .back .bk-notes li::before{content:"";position:absolute;left:2px;top:.42em;width:10px;height:10px;border-radius:50%;background:var(--c1,#ec5a97);box-shadow:0 0 0 2px #1d3337}
+.bookview .back .bk-notes li{position:relative}
 .bookview .back .bk-spot{margin-top:4px;font-size:clamp(12px,1.05vw,14px);line-height:1.35;background:#fff3c4;border:2px dashed #c9a646;border-radius:10px;padding:8px 10px}
 .bookview .back .bk-spot b{font-family:var(--f-display);font-weight:400;letter-spacing:.03em;color:var(--c2)}
 .bookview .back h3{font-family:var(--f-display);font-size:clamp(20px,2.8vw,36px);line-height:1;color:var(--c2)}
@@ -269,7 +268,7 @@ main{position:relative}
 /* =================== 2. MAP — open guidebook =================== */
 .p-map{--paper:#f6efdc;--paper-2:#e9dcbd;--ink:#28393a;--pink:#ec5a97;--pink-d:#b12f68;--teal:#3db3cf;
   background:radial-gradient(90% 60% at 50% 0,rgba(255,255,255,.07),transparent 70%),#2a4a3a;background-image:radial-gradient(90% 60% at 50% 0,rgba(255,255,255,.07),transparent 70%),repeating-linear-gradient(115deg,rgba(0,0,0,.06) 0 2px,transparent 2px 14px);color:var(--ink)}
-.p-map .wrap{padding-block:calc(92px + env(safe-area-inset-top,0px)) 0}
+.p-map .wrap{padding-block:calc(112px + env(safe-area-inset-top,0px)) 0}
 .gb{position:relative;display:grid;grid-template-columns:1fr 1fr;max-width:1100px;margin:0 auto;border-radius:10px;
   background:linear-gradient(90deg,var(--paper) 0 48.5%,#cdbf9f 49.6%,#b9a982 50%,#cdbf9f 50.4%,var(--paper) 51.5%);
   box-shadow:0 0 0 6px #6e4627,0 0 0 9px #3a2312,0 26px 50px rgba(0,0,0,.55)}
@@ -461,11 +460,12 @@ main{position:relative}
 .p-finale .wrap{position:relative;min-height:100vh;min-height:100svh;display:flex;flex-direction:column;justify-content:center;padding-block:calc(96px + env(safe-area-inset-top,0px)) 120px}
 .fin-copy{max-width:560px;margin:0 auto;text-align:center;display:flex;flex-direction:column;align-items:center}
 .p-finale .wrap{align-items:center;justify-content:flex-start!important;padding-top:max(44vh,calc(env(safe-area-inset-top,0px) + 300px))!important;padding-bottom:40px!important}
-.p-finale .credits{height:min(220px,26vh)}
+.p-finale .credits{height:min(330px,39vh)}
 .fin-foot{position:absolute;left:0;right:0;bottom:0;z-index:2;text-align:center;padding:14px max(16px,env(safe-area-inset-right,0px)) calc(26px + env(safe-area-inset-bottom,0px)) max(16px,env(safe-area-inset-left,0px));background:linear-gradient(transparent,rgba(8,16,30,.85) 45%);color:#cfd8e6;font-size:14.5px;line-height:1.45}
 .fin-foot .ff-brand a{font-family:var(--f-display);font-size:22px;letter-spacing:.02em;color:#fff;text-decoration:none;text-shadow:0 2px 0 var(--rose)}
 .fin-foot .ff-brand a:hover{text-decoration:underline;text-underline-offset:4px}
 .fin-foot p{margin:2px auto 0;max-width:70ch}
+.site-foot{position:relative;margin-top:-20px;padding-top:44px;--rose:#ec5a97}
 .fin-foot .ff-small{font-size:11.5px;opacity:.75;margin-top:4px}
 .p-finale .wrap{padding-bottom:150px!important}
 @media (max-width:760px){.p-finale .wrap{padding-top:max(56vh,320px)!important}}
@@ -484,6 +484,7 @@ main{position:relative}
   .fin-shade{background:linear-gradient(180deg,rgba(14,26,48,0) 25%,rgba(14,26,48,.85) 75%)}
   .p-finale .wrap{justify-content:flex-end;padding-bottom:150px}
   .credits{height:150px}
+  .p-finale .credits{height:225px}
 }
 
 @media (prefers-reduced-motion:reduce){
@@ -543,6 +544,10 @@ main{position:relative}
     </div>
   </section>
   <div class="next"><a href="#map"><small>Next stop</small> The Trail Map →</a></div>
+  <footer class="fin-foot site-foot">
+    <div class="ff-brand"><a href="https://footyfooty.com" target="_blank" rel="noopener">FootyFooty.com</a></div>
+    <p>© 2026 Footy Footy. All rights reserved.</p>
+  </footer>
 </section>
 
 <!-- ============ 2. MAP ============ -->
@@ -571,6 +576,10 @@ main{position:relative}
     </div>
   </div>
   <div class="next"><a href="#crew"><small>Next stop</small> Meet the Crew →</a></div>
+  <footer class="fin-foot site-foot">
+    <div class="ff-brand"><a href="https://footyfooty.com" target="_blank" rel="noopener">FootyFooty.com</a></div>
+    <p>© 2026 Footy Footy. All rights reserved.</p>
+  </footer>
 </section>
 
 <!-- ============ 3. VAULT ============ -->
@@ -596,6 +605,10 @@ main{position:relative}
     <div class="cdial" id="cdial"><div class="cd-needle" aria-hidden="true"></div><div class="cd-dial" id="cdDial"><div class="cd-face" aria-hidden="true"></div></div><div class="cd-info" id="cdInfo" aria-live="polite"></div><div class="cd-ctrl"><button type="button" id="cdPrev" aria-label="Previous crew member">&#8249;</button><button type="button" id="cdNext" aria-label="Next crew member">&#8250;</button></div></div>
   </div>
   <div class="next"><a href="#vault"><small>Next stop</small> The Vault →</a></div>
+  <footer class="fin-foot site-foot">
+    <div class="ff-brand"><a href="https://footyfooty.com" target="_blank" rel="noopener">FootyFooty.com</a></div>
+    <p>© 2026 Footy Footy. All rights reserved.</p>
+  </footer>
 </section>
 
 <!-- ============ 5. FINALE ============ -->
@@ -624,6 +637,10 @@ main{position:relative}
     </div>
   </div>
   <div class="next"><a href="#finale"><small>Last stop</small> Finish →</a></div>
+  <footer class="fin-foot site-foot">
+    <div class="ff-brand"><a href="https://footyfooty.com" target="_blank" rel="noopener">FootyFooty.com</a></div>
+    <p>© 2026 Footy Footy. All rights reserved.</p>
+  </footer>
 </section>
 
 <!-- ============ 4. CREW ============ -->
@@ -735,8 +752,8 @@ main{position:relative}
   const rides=[['river','River'],['gondola','Gondola'],['fall','Waterfall']];
   let ride=Math.max(0,rides.findIndex(r=>r[0]===store.get('footy-ride')));
   const tilt=['-3deg','2.5deg','-1.5deg','3deg'];
-  pages.forEach((p,i)=>{
-    const li=document.createElement('li'); li.style.setProperty('--r',tilt[i%4]); li.style.setProperty('--i',i);
+  [...pages].reverse().forEach((p,ri)=>{ const i=pages.length-1-ri;
+    const li=document.createElement('li'); li.style.setProperty('--r',tilt[ri%4]); li.style.setProperty('--i',ri);
     li.innerHTML=`<a class="arrow" href="#${p.id}"><small>Stop ${i+1}</small><b>${p.dataset.name}</b></a>`;
     boards.appendChild(li);
   });
