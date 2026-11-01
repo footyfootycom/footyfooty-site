@@ -433,8 +433,8 @@ main{position:relative}
 .book.skin .cover .skinimg{position:absolute;inset:0;width:100%;height:100%;max-width:none;z-index:1;pointer-events:none;filter:drop-shadow(0 4px 4px rgba(0,0,0,.25))}
 .book.skin .cover .ttl{position:absolute;left:10%;right:7%;top:78.5%;bottom:0;display:flex;align-items:center;justify-content:center;z-index:2;color:#fff;text-shadow:0 0 3px #000,0 2px 0 #000,0 0 8px rgba(0,0,0,.6)}
 .bookview .front.skin{background:none;box-shadow:none;padding:0;display:block}
-.bookview.open .leaf.pg{left:50%;width:calc(50% * .97)}
-.bookview .leaf.pg{transition:left .6s .3s,width .6s .3s;top:2.5%;bottom:2.5%;left:calc(50% + 1%);width:calc(50% * .97 - 1%);border-radius:2px 10px 10px 2px}
+.bookview.open .leaf.pg{left:50%;width:50%;top:0;bottom:0;border-radius:4px 14px 14px 4px}
+.bookview .leaf.pg{transition:left .6s .3s,width .6s .3s,top .6s .3s,bottom .6s .3s,border-radius .6s .3s;top:2.5%;bottom:2.5%;left:calc(50% + 1%);width:calc(50% * .97 - 1%);border-radius:2px 10px 10px 2px}
 .bookview .front.skin .win{position:absolute;left:18.5%;top:9%;width:70.5%;height:69.5%;border-radius:50% 50% 2px 2px/39% 39% 2px 2px;box-shadow:none;z-index:0;flex:none}
 .bookview .front.skin .skinimg{position:absolute;inset:0;width:100%;height:100%;max-width:none;z-index:1}
 .bookview .front.skin .ttl{position:absolute;left:10%;right:7%;top:78.5%;bottom:0;display:flex;align-items:center;justify-content:center;z-index:2;color:#fff;text-shadow:0 0 3px #000,0 2px 0 #000}
@@ -565,7 +565,7 @@ main{position:relative}
 <section class="page p-crew" id="crew" data-name="The Crew" hidden>
   <div class="wrap">
     <header class="crew-head">
-      <span class="eyebrow">Stop 4 of 5 · The Crew</span>
+      <span class="eyebrow">Stop 3 of 5 · The Crew</span>
       <h1>Meet the Crew</h1>
       <p>Everyone racing down the river, plus one very proud white mascot.</p>
     </header>
@@ -590,13 +590,13 @@ main{position:relative}
 <section class="page p-vault" id="vault" data-name="The Vault" hidden>
   <div class="wrap">
     <header class="vault-head">
-      <span class="eyebrow">Stop 3 of 5 · The Vault</span>
+      <span class="eyebrow">Stop 4 of 5 · The Vault</span>
       <h1>The Vault</h1>
       <p>Every Footy clip ever made lives here, newest first. Pull a book off the shelf to watch it.</p>
       <span class="vcount">12 clips · 1 on the way</span>
     </header>
     <div class="shelves">
-      <div class="slot"><button class="book" type="button" style="--c1:#8a5a2b;--c2:#5e3a17" data-src="media/posts/001.mp4" data-title="Peaceful Ride… Until Barry" data-blurb="Footy took the slow lane today. Then a very nosy beaver showed up." aria-label="Open Peaceful Ride, Until Barry"><span class="pages"></span><span class="cover"><span class="win"><img src="media/posts/001-poster.jpg" alt="" loading="lazy"></span><span class="ttl">Peaceful Ride</span></span><span class="vtag">NEW</span></button><span class="vno">No. 001</span></div>
+      <div class="slot"><button class="book" type="button" style="--c1:#8a5a2b;--c2:#5e3a17" data-src="media/posts/001.mp4" data-title="Peaceful Ride&hellip; Until Barry" data-blurb="Footy took the slow lane today. Then a very nosy beaver showed up." aria-label="Open Peaceful Ride, Until Barry"><span class="pages"></span><span class="cover"><span class="win"><img src="media/posts/001-poster.jpg" alt="" loading="lazy"></span><span class="ttl">Peaceful Ride</span></span><span class="vtag">NEW</span></button><span class="vno">No. 001</span></div>
       <div class="slot"><button class="book" type="button" style="--c1:#8fa62a;--c2:#5f7414" data-src="media/opening.mp4" data-title="Splash Landing" data-blurb="Rule one of waterfalls: never check the depth first." aria-label="Open Splash Landing"><span class="pages"></span><span class="cover"><span class="win"><img src="media/opening-poster.jpg" alt="" loading="lazy"></span><span class="ttl">Splash Landing</span></span></button><span class="vno">No. 12</span></div>
       <div class="slot"><button class="book" type="button" style="--c1:#ec5a97;--c2:#b12f68" data-src="media/valley-hero.mp4" data-title="The Long Way Down" data-blurb="Nine waterfalls, fourteen gondolas and absolutely zero brakes." aria-label="Open The Long Way Down"><span class="pages"></span><span class="cover"><span class="win"><img src="media/valley-poster.jpg" alt="" loading="lazy"></span><span class="ttl">The Long Way Down</span></span></button><span class="vno">No. 11</span></div>
       <div class="slot"><button class="book" type="button" style="--c1:#3db3cf;--c2:#1d7f99" data-src="media/ending.mp4" data-title="Good Morning, Valley" data-blurb="The sun came up. The frogs clapped. Nobody knows why." aria-label="Open Good Morning, Valley"><span class="pages"></span><span class="cover"><span class="win"><img src="media/ending-poster.jpg" alt="" loading="lazy"></span><span class="ttl">Good Morning, Valley</span></span></button><span class="vno">No. 10</span></div>
