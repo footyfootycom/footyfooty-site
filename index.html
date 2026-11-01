@@ -212,7 +212,7 @@ main{position:relative}
 .waypoint{position:absolute;z-index:8;left:max(20px,env(safe-area-inset-left,0px));bottom:calc(14vh + var(--bar-h));max-width:min(420px,calc(100vw - 40px));opacity:0;transform:translateY(20px);transition:opacity .45s,transform .45s}
 .waypoint.on{opacity:1;transform:none}
 .waypoint .alt{font:500 12px/1 var(--f-mono);letter-spacing:.14em;color:var(--river);background:rgba(5,16,15,.75);padding:6px 10px;border-radius:4px;display:inline-block}
-.waypoint h2{font-family:var(--f-display);font-size:clamp(34px,5.4vw,62px);margin-top:10px;text-shadow:0 3px 0 #0b1e1f,0 8px 26px rgba(0,0,0,.5)}
+.waypoint h2{font-family:var(--f-display);font-size:clamp(29px,4.6vw,53px);margin-top:10px;text-shadow:0 3px 0 #0b1e1f,0 8px 26px rgba(0,0,0,.5)}
 .waypoint p{margin-top:8px;font-weight:600;text-shadow:0 1px 8px rgba(0,0,0,.85);max-width:36ch}
 .altimeter{position:absolute;z-index:8;right:max(18px,env(safe-area-inset-right,0px));top:46%;transform:translateY(-50%);height:40vh;width:44px;display:flex;flex-direction:column;align-items:center;gap:8px;font:11px var(--f-mono);text-shadow:0 1px 4px #000}
 .altimeter .tk{flex:1;width:3px;background:rgba(255,255,255,.3);border-radius:2px;position:relative}
@@ -532,11 +532,11 @@ main{position:relative}
           <button class="book" type="button" data-src="media/ending.mp4" data-title="Good Morning, Valley" data-blurb="The sun came up. The frogs clapped. Nobody knows why." aria-label="Open book 3: Good Morning, Valley"><span class="pages"></span><span class="cover"><span class="win"><video src="media/ending.mp4" muted loop playsinline autoplay preload="metadata"></video></span><span class="ttl">Good Morning, Valley</span></span></button>
         </div>
       </div>
-      <div class="waypoint" data-from=".04" data-to=".12"><span class="alt">PART 1 · THE PEAKS</span><h2>Up where the gondolas hum</h2><p>A cable line of little red cars strung between cliff-top cabins, far above the mist.</p></div>
-      <div class="waypoint" data-from=".19" data-to=".28"><span class="alt">PART 2 · THE FALLS</span><h2>Stone frogs guard the tunnels</h2><p>Waterfalls pour out of carved frog-face arches. The river ducks through and keeps going.</p></div>
-      <div class="waypoint" data-from=".35" data-to=".44"><span class="alt">PART 3 · THE LANES</span><h2>Boardwalks zig. Rivers zag.</h2><p>Lookout towers, arch bridges and turquoise lanes that split, loop and meet again.</p></div>
-      <div class="waypoint" data-from=".51" data-to=".63"><span class="alt">PART 4 · THE SPIRES</span><h2>Rope bridges and rock towers</h2><p>Below the big bend the river braids around sandstone spires, ducks into caves and tumbles down the stepped rapids past the old water-wheel mill.</p></div>
-      <div class="waypoint" data-from=".71" data-to=".86"><span class="alt">PART 5 · THE CANYON</span><h2>Over the edge we go</h2><p>The whole river pours off the cliff into a red-rock gorge. Mine carts rattle along the wall and the river keeps on running.</p></div>
+      <div class="waypoint" data-from=".04" data-to=".17"><span class="alt">PART 1 · THE PEAKS</span><h2>Up where the gondolas hum</h2><p>A cable line of little red cars strung between cliff-top cabins, far above the mist.</p></div>
+      <div class="waypoint" data-from=".19" data-to=".33"><span class="alt">PART 2 · THE FALLS</span><h2>Stone frogs guard the tunnels</h2><p>Waterfalls pour out of carved frog-face arches. The river ducks through and keeps going.</p></div>
+      <div class="waypoint" data-from=".35" data-to=".49"><span class="alt">PART 3 · THE LANES</span><h2>Boardwalks zig. Rivers zag.</h2><p>Lookout towers, arch bridges and turquoise lanes that split, loop and meet again.</p></div>
+      <div class="waypoint" data-from=".51" data-to=".69"><span class="alt">PART 4 · THE SPIRES</span><h2>Rope bridges and rock towers</h2><p>Below the big bend the river braids around sandstone spires, ducks into caves and tumbles down the stepped rapids past the old water-wheel mill.</p></div>
+      <div class="waypoint" data-from=".71" data-to=".92"><span class="alt">PART 5 · THE CANYON</span><h2>Over the edge we go</h2><p>The whole river pours off the cliff into a red-rock gorge. Mine carts rattle along the wall and the river keeps on running.</p></div>
       <button class="minimap" id="minimap" type="button" aria-label="River map: tap to jump along the valley"><span class="vp" id="mmVp"></span><span class="mdot" id="mmDot"></span></button>
       <div class="hud"><button hidden class="chip" type="button" id="soundBtn" aria-pressed="false">Sound <b>off</b></button></div>
       <div class="card" id="infoCard" role="dialog" aria-label="About this spot" hidden><button class="x" type="button" aria-label="Close">×</button><h3></h3><p></p></div>
