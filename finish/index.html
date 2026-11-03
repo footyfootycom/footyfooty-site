@@ -144,11 +144,12 @@ main{position:relative}
 
 /* =================== 1. HOME — Summit Station (cinematic) =================== */
 .p-home{background:var(--night)}
-.descent{position:relative;height:980vh}
+.descent{position:relative;height:840vh}
 .stage{position:sticky;top:0;height:100vh;height:100svh;overflow:hidden;background:#b9c6d2}
 .layer{position:absolute;left:50%;top:0;will-change:transform;pointer-events:none;user-select:none}
 .layer img{width:100%}
 #valley{z-index:1}#pines{z-index:5}#bridges{z-index:4}
+#valley,#pines,#bridges{transform-origin:0 0;backface-visibility:hidden}
 #bridges .blk{position:absolute;left:0;width:100%;height:calc(var(--u,1px)*1376)}#bridges .blk.low{top:calc(var(--u,1px)*896)}#bridges .blk.low3{top:calc(var(--u,1px)*1792)}#bridges .blk img{position:absolute;inset:0;width:100%;height:100%;max-width:none}
 .crew{position:absolute;inset:0;z-index:4;pointer-events:none;overflow:hidden}
 .racer2{position:absolute;left:0;top:0;z-index:4;width:clamp(62px,6.4vw,116px);height:auto;margin:0;opacity:0;pointer-events:none;will-change:transform,opacity;filter:drop-shadow(0 8px 6px rgba(0,30,40,.3))}
@@ -158,7 +159,7 @@ main{position:relative}
 #valley .blk.low{top:calc(var(--u,1px)*896);-webkit-mask:linear-gradient(transparent 0,#000 9%);mask:linear-gradient(transparent 0,#000 9%)}
 #valley .blk img,#valley .hv{position:absolute;inset:0;width:100%;height:100%;max-width:none;object-fit:fill}
 .mist{position:absolute;inset:0;z-index:4;pointer-events:none;overflow:hidden}
-.mist i{position:absolute;width:70vw;height:30vh;border-radius:50%;background:radial-gradient(closest-side,rgba(255,255,255,.55),rgba(255,255,255,0));filter:blur(6px);animation:drift 26s linear infinite}
+.mist i{position:absolute;width:70vw;height:30vh;border-radius:50%;background:radial-gradient(closest-side,rgba(255,255,255,.55),rgba(255,255,255,0));will-change:transform;animation:drift 26s linear infinite}
 .mist i:nth-child(1){top:22%;left:-30%;animation-duration:34s}
 .mist i:nth-child(2){top:48%;left:10%;animation-duration:42s;animation-delay:-14s;opacity:.7}
 .mist i:nth-child(3){top:64%;left:-10%;animation-duration:30s;animation-delay:-8s;opacity:.55}
@@ -272,7 +273,7 @@ main{position:relative}
 .p-home .next a{background:#d9b24a;color:#2c1a0c;box-shadow:0 6px 0 #8a6a1c}
 /* ---- descent extras: racing boat, depth, collectibles ---- */
 .clouds{position:absolute;inset:0;z-index:4;pointer-events:none;overflow:hidden}
-.clouds i{position:absolute;width:46vw;height:16vh;border-radius:50%;background:radial-gradient(closest-side,rgba(255,255,255,.9),rgba(255,255,255,0));filter:blur(4px);animation:cloud 60s linear infinite}
+.clouds i{position:absolute;width:46vw;height:16vh;border-radius:50%;background:radial-gradient(closest-side,rgba(255,255,255,.9),rgba(255,255,255,0));will-change:transform;animation:cloud 60s linear infinite}
 .clouds i:nth-child(1){top:4%;animation-duration:70s}
 .clouds i:nth-child(2){top:14%;width:34vw;animation-duration:52s;animation-delay:-30s;opacity:.8}
 @keyframes cloud{from{transform:translateX(-50vw)}to{transform:translateX(110vw)}}
@@ -904,15 +905,17 @@ main{position:relative}
     snowResize();
   }
   const heroP=()=>{ const r=descent.getBoundingClientRect(); return clamp(-r.top/(r.height-H)); };
+  const hvs=[...document.querySelectorAll('#valley .hv')];
   function renderHero(){
     if(current!=='home') return;
     const p=reduce?0:heroP(), e=ease(p), pan=e*maxPan, zoom=1.12-.12*e;
-    valley.style.transform=bridges.style.transform=`translate3d(0,${-pan}px,0) scale(${zoom})`; valley.style.transformOrigin=bridges.style.transformOrigin=`50% ${pan+H/2}px`;
-    pines.style.transform=`translate3d(0,${-pan*1.1}px,0) scale(${zoom*(1+.18*e)})`; pines.style.transformOrigin=`50% ${pan*1.1+H}px`; pines.style.opacity=1-clamp(((pan+H)/(LW/IW)-1000)/260);
+    { const ox=LW/2, oy=pan+H/2; valley.style.transform=bridges.style.transform=`translate3d(${ox*(1-zoom)}px,${oy*(1-zoom)-pan}px,0) scale(${zoom})`; }
+    { const z2=zoom*(1+.18*e), ox=LW/2, oy=pan*1.1+H; pines.style.transform=`translate3d(${ox*(1-z2)}px,${oy*(1-z2)-pan*1.1}px,0) scale(${z2})`; } pines.style.opacity=1-clamp(((pan+H)/(LW/IW)-1000)/260);
     const t=clamp((p-.06)/.18); dTitle.style.opacity=1-t; dTitle.style.pointerEvents=t>.5?'none':'auto'; dTitle.style.transform=`translate(-50%,${-t*80}px) scale(${1+t*.2})`;
     waypoints.forEach(w=>w.classList.toggle('on',p>=+w.dataset.from&&p<+w.dataset.to));
     const k=clamp((p-.86)/.11);
     view.p=p; view.pan=pan; view.zoom=zoom; renderExtras(p,pan);
+    { const u=LW/IW, top=pan/u, bot=(pan+H)/u; [[0,1376],[896,2272],[1792,3168]].forEach(([a,b],i)=>{ const v=hvs[i]; if(!v) return; const on=b>top-200&&a<bot+200; if(on&&v.paused) v.play().catch(()=>{}); else if(!on&&!v.paused) v.pause(); }); }
     peek.style.transform=`translateY(${150-150*ease(k)}%) rotate(${(1-k)*8}deg)`; peek.style.opacity=k>0?1:0; const live=k>.3; peek.style.pointerEvents=live?'auto':'none'; peek.tabIndex=live?0:-1;
   }
   const cv=$('#snow'), cx=cv.getContext('2d'); let flakes=[];
@@ -1051,6 +1054,7 @@ main{position:relative}
     /* mood: cool morning at the top, golden light in the spires, sunset in the canyon */
     const c1=[120,170,255,.25], c2=[255,215,120,.35], c3=[255,110,60,.55];
     const m=p<.45?c1.map((v,i)=>v+(c2[i]-v)*clamp((p-.25)/.2)):c2.map((v,i)=>v+(c3[i]-v)*clamp((p-.55)/.15));
+    const mk=m.map(v=>Math.round(v*20)/20).join(); if(mk===renderExtras.k) return; renderExtras.k=mk;
     mood.style.background=`radial-gradient(120% 90% at 50% 30%,rgba(${m[0]|0},${m[1]|0},${m[2]|0},${m[3]}),rgba(${m[0]|0},${m[1]|0},${m[2]|0},${m[3]*.5}))`;
     /* chapter flash */
   }
@@ -1082,7 +1086,7 @@ main{position:relative}
   bookview.addEventListener('click',e=>{ if(e.target===bookview) closeBook(); });
   spread.addEventListener('click',e=>{ if(!e.target.closest('video,.bv-snd')) closeBook(); });
   addEventListener('keydown',e=>{ if(e.key==='Escape') closeBook(); });
-  onShow.home=()=>{ size(); renderHero(); $$('#valley video').forEach(v=>v.play().catch(()=>{})); };
+  onShow.home=()=>{ size(); renderHero(); };
 
   /* ---------------- MAP: guidebook with the connected valley ---------------- */
   const GB=[
