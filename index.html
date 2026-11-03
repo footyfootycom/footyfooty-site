@@ -204,12 +204,22 @@ main{position:relative}
 .bookview.open .lid{opacity:0;pointer-events:none;transition:transform .9s cubic-bezier(.6,0,.25,1),opacity .22s .38s}
 .bookview.solo .lid{opacity:0;pointer-events:none;transition:transform .9s cubic-bezier(.6,0,.25,1),opacity .4s}
 .bookview .lid{transition:transform .9s cubic-bezier(.6,0,.25,1),opacity .4s}
+.bookview{grid-template-rows:auto auto;align-content:center;gap:16px}
+.bookview .spread{--bw:min(44vw,38vh)}
+.bv-notes{width:min(calc(var(--bw)*1.25),92vw);box-sizing:border-box;background:#fffaf0;color:#1d3337;border-radius:16px;padding:14px 18px;box-shadow:0 10px 30px rgba(0,0,0,.4);opacity:0;transform:translateY(10px);transition:opacity .35s,transform .35s;max-height:30vh;overflow:auto}
+.bookview.open .bv-notes{opacity:1;transform:none;transition-delay:.55s}
+.bv-notes .bk-tag{font:700 11px/1 var(--f-body);letter-spacing:.16em;text-transform:uppercase;color:#8a7b5c}
+.bv-notes h3{font-family:var(--f-display);font-weight:400;font-size:clamp(20px,2.2vw,28px);line-height:1.05;margin:4px 0 4px;color:var(--c2,#173033)}
+.bv-notes p{font-weight:600;font-size:14.5px;line-height:1.4;margin:0}
+.bv-notes ul{list-style:none;margin:8px 0 0;padding:0;display:grid;gap:4px;font-size:14px;line-height:1.35}
+.bv-notes .bk-spot{display:block;margin-top:8px;font-size:13.5px;line-height:1.35;background:#fff3c4;border:3px dotted #c9a646;border-radius:10px;padding:7px 10px}
+.bv-notes .bk-spot b{font-family:var(--f-display);font-weight:400;letter-spacing:.03em;color:var(--c2)}
 .bv-wrap{position:relative;place-self:center;display:block;line-height:0}
 .bv-wrap video{cursor:pointer}
 .bv-play{position:absolute;inset:0;display:grid;place-items:center;font-size:54px;line-height:1;color:#fff;text-shadow:0 3px 12px rgba(0,0,0,.6);pointer-events:none}
 .bv-snd{position:absolute;right:10px;bottom:10px;font:700 12px/1 var(--f-body);letter-spacing:.04em;padding:7px 11px;border-radius:999px;border:2px solid #173033;background:#f6d36b;color:#173033;cursor:pointer;box-shadow:0 3px 0 #173033}
 .bv-snd[aria-pressed="false"]{background:#fff}
-@media (max-width:640px){.bookview{overflow:hidden} .bookview .spread{--bw:min(86vw,54vh);position:absolute;left:50%;top:50%;margin:calc(var(--bw)*-.8) 0 0 calc(var(--bw)*-1)} .bookview.open .spread{transform:translateX(calc(var(--bw)*-.5))} .bookview .pg video{width:calc(var(--bw)*.82)}
+@media (max-width:640px){.bookview{overflow:hidden;--bw:min(72vw,36vh)} .bookview .spread{--bw:inherit;position:absolute;left:50%;top:calc(env(safe-area-inset-top,0px) + 74px);margin:0 0 0 calc(var(--bw)*-1)} .bv-notes{position:absolute;left:50%;top:calc(env(safe-area-inset-top,0px) + 88px + var(--bw)*1.6);width:calc(100vw - 32px);max-height:calc(100vh - 120px - var(--bw)*1.6);margin-left:calc(-50vw + 16px)} .bookview.open .spread{transform:translateX(calc(var(--bw)*-.5))} .bookview .pg video{width:calc(var(--bw)*.82)}
   .bookview .lid{transition:transform .9s cubic-bezier(.6,0,.25,1),opacity .2s} .bookview.open .lid{opacity:0;pointer-events:none;transition:transform .9s cubic-bezier(.6,0,.25,1),opacity .35s .5s}}
 @media (prefers-reduced-motion:reduce){.bookview .spread,.bookview .lid{transition:none}}
 
@@ -723,6 +733,7 @@ main{position:relative}
       <div class="leaf pg"><div class="bv-wrap"><video id="bookVid" playsinline loop preload="auto"></video><span class="bv-play" id="bookPlayIc" aria-hidden="true" hidden>&#9654;</span><button type="button" class="bv-snd" id="bookSnd" aria-pressed="true">Sound on</button></div></div>
       <div class="leaf lid"><div class="front" id="lidFront"></div><div class="back"><span class="bk-tag">Field notes</span><h3 id="bookTitle"></h3><p id="bookBlurb"></p><ul class="bk-notes" id="bookNotes"></ul><span class="bk-spot" id="bookSpot"></span></div></div>
     </div>
+    <div class="bv-notes" id="bvNotes" aria-live="polite"></div>
   </div>
 
 
@@ -1027,6 +1038,7 @@ main{position:relative}
     lidFront.innerHTML=bk.querySelector('.cover').innerHTML; lidFront.classList.toggle('skin',bk.classList.contains('skin'));
     { const pv=lidFront.querySelector('video'), sv=bk.querySelector('video'); if(pv){ try{ const cv2=document.createElement('canvas'); cv2.width=sv.videoWidth||480; cv2.height=sv.videoHeight||854; cv2.getContext('2d').drawImage(sv,0,0,cv2.width,cv2.height); pv.poster=cv2.toDataURL('image/jpeg',.85); }catch(e){} pv.preload='auto'; pv.muted=true; pv.loop=true; pv.playsInline=true; try{pv.currentTime=sv.currentTime||0}catch(e){} pv.play().catch(()=>{}); } } $('#bookTitle').textContent=bk.dataset.title; $('#bookBlurb').textContent=bk.dataset.blurb; { const nt=BOOK_NOTES[bk.dataset.title]; const ul=$('#bookNotes'); ul.innerHTML=''; (nt?nt[0]:[]).forEach(t=>{ const li=document.createElement('li'); li.textContent=t; ul.appendChild(li); }); const sp=$('#bookSpot'); sp.hidden=!nt; if(nt){ sp.innerHTML='<b>Spot it:</b> '; sp.appendChild(document.createTextNode(nt[1])); } }
     bookVid.src=bk.dataset.src; bookVid.currentTime=0; bookview.classList.remove('open'); bookview.hidden=false; document.body.style.overflow='hidden';
+    { const bn=$('#bvNotes'), bk2=lidFront.parentElement.querySelector('.back'); bn.innerHTML=bk2.innerHTML; bn.style.setProperty('--c2',getComputedStyle(spread).getPropertyValue('--c2')); bn.querySelectorAll('[id]').forEach(e=>e.removeAttribute('id')); }
     blip(520); await wait(reduce?0:60); bookview.classList.add('open'); $('#bookClose').focus(); clearTimeout(window.__solo); window.__solo=setTimeout(()=>bookview.classList.add('solo'),reduce?0:1050);
     bookVid.muted=false; bookVid.play().catch(()=>{ bookVid.muted=true; bookVid.play().catch(()=>{}); }).finally(bvSync);
   }));
