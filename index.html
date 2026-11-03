@@ -201,12 +201,16 @@ main{position:relative}
 .bookview .back p{font-size:clamp(13px,1.3vw,16px);line-height:1.4;font-weight:600}
 .bookview .close{position:absolute;top:max(14px,env(safe-area-inset-top,0px));right:max(14px,env(safe-area-inset-right,0px));width:46px;height:46px;border-radius:50%;border:0;background:#fff;color:#123;font:800 22px/1 var(--f-body);cursor:pointer;box-shadow:0 6px 0 rgba(0,0,0,.25)}
 .bookview.open .spread,.bookview.solo .spread{transform:translateX(calc(var(--bw)*-.5))}
-.bookview.open .lid{opacity:0;pointer-events:none;transition:transform .9s cubic-bezier(.6,0,.25,1),opacity .22s .38s}
-.bookview.solo .lid{opacity:0;pointer-events:none;transition:transform .9s cubic-bezier(.6,0,.25,1),opacity .4s}
+.bookview.open .lid{pointer-events:none}
+.bookview .lid>div{transition:opacity .3s}
+.bookview.open .lid>div{opacity:0;transition:opacity .3s .85s}
+.bookview.solo .lid{pointer-events:none}
 .bookview .lid{transition:transform .9s cubic-bezier(.6,0,.25,1),opacity .4s}
 .bookview{grid-template-rows:auto auto;align-content:center;gap:16px}
-.bookview .spread{--bw:min(44vw,38vh)}
-.bv-notes{width:min(calc(var(--bw)*1.25),92vw);box-sizing:border-box;background:#fffaf0;color:#1d3337;border-radius:16px;padding:14px 18px;box-shadow:0 10px 30px rgba(0,0,0,.4);opacity:0;transform:translateY(10px);transition:opacity .35s,transform .35s;max-height:30vh;overflow:auto}
+@media (min-width:641px){.bookview{--bw:min(44vw,38vh)} .bookview .spread{--bw:inherit}}
+.bv-notes .bk-spot{display:none!important}
+.bookview .back>*{visibility:hidden}.bookview .back{background:linear-gradient(270deg,#e6dcc4,#fbf5e6 10%),repeating-linear-gradient(transparent 0 22px,rgba(120,100,60,.08) 22px 23px)}
+.bv-notes{width:var(--bw);box-sizing:border-box;background:#fffaf0;color:#1d3337;border-radius:16px;padding:14px 18px;box-shadow:0 10px 30px rgba(0,0,0,.4);opacity:0;transform:translateY(10px);transition:opacity .35s,transform .35s;max-height:30vh;overflow:auto}
 .bookview.open .bv-notes{opacity:1;transform:none;transition-delay:.55s}
 .bv-notes .bk-tag{font:700 11px/1 var(--f-body);letter-spacing:.16em;text-transform:uppercase;color:#8a7b5c}
 .bv-notes h3{font-family:var(--f-display);font-weight:400;font-size:clamp(20px,2.2vw,28px);line-height:1.05;margin:4px 0 4px;color:var(--c2,#173033)}
@@ -219,8 +223,8 @@ main{position:relative}
 .bv-play{position:absolute;inset:0;display:grid;place-items:center;font-size:54px;line-height:1;color:#fff;text-shadow:0 3px 12px rgba(0,0,0,.6);pointer-events:none}
 .bv-snd{position:absolute;right:10px;bottom:10px;font:700 12px/1 var(--f-body);letter-spacing:.04em;padding:7px 11px;border-radius:999px;border:2px solid #173033;background:#f6d36b;color:#173033;cursor:pointer;box-shadow:0 3px 0 #173033}
 .bv-snd[aria-pressed="false"]{background:#fff}
-@media (max-width:640px){.bookview{overflow:hidden;--bw:min(72vw,36vh)} .bookview .spread{--bw:inherit;position:absolute;left:50%;top:calc(env(safe-area-inset-top,0px) + 74px);margin:0 0 0 calc(var(--bw)*-1)} .bv-notes{position:absolute;left:50%;top:calc(env(safe-area-inset-top,0px) + 88px + var(--bw)*1.6);width:calc(100vw - 32px);max-height:calc(100vh - 120px - var(--bw)*1.6);margin-left:calc(-50vw + 16px)} .bookview.open .spread{transform:translateX(calc(var(--bw)*-.5))} .bookview .pg video{width:calc(var(--bw)*.82)}
-  .bookview .lid{transition:transform .9s cubic-bezier(.6,0,.25,1),opacity .2s} .bookview.open .lid{opacity:0;pointer-events:none;transition:transform .9s cubic-bezier(.6,0,.25,1),opacity .35s .5s}}
+@media (max-width:640px){.bookview{overflow:hidden;--bw:min(72vw,36vh)} .bookview .spread{--bw:inherit;position:absolute;left:50%;top:calc(env(safe-area-inset-top,0px) + 74px);margin:0 0 0 calc(var(--bw)*-1)} .bv-notes{position:absolute;left:50%;top:calc(env(safe-area-inset-top,0px) + 88px + var(--bw)*1.6);width:var(--bw);max-height:calc(100vh - 120px - var(--bw)*1.6);margin-left:calc(var(--bw)*-.5)} .bookview.open .spread{transform:translateX(calc(var(--bw)*-.5))} .bookview .pg video{width:calc(var(--bw)*.82)}
+  .bookview .lid{transition:transform .9s cubic-bezier(.6,0,.25,1),opacity .2s} .bookview.open .lid{pointer-events:none}}
 @media (prefers-reduced-motion:reduce){.bookview .spread,.bookview .lid{transition:none}}
 
 @keyframes bob{50%{transform:translateY(-8px) rotate(-1deg)}}
