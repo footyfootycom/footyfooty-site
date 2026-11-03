@@ -200,7 +200,8 @@ main{position:relative}
 .bookview .back h3{font-family:var(--f-display);font-size:clamp(20px,2.8vw,36px);line-height:1;color:var(--c2)}
 .bookview .back p{font-size:clamp(13px,1.3vw,16px);line-height:1.4;font-weight:600}
 .bookview .close{position:absolute;top:max(14px,env(safe-area-inset-top,0px));right:max(14px,env(safe-area-inset-right,0px));width:46px;height:46px;border-radius:50%;border:0;background:#fff;color:#123;font:800 22px/1 var(--f-body);cursor:pointer;box-shadow:0 6px 0 rgba(0,0,0,.25)}
-.bookview.solo .spread{transform:translateX(calc(var(--bw)*-.5))}
+.bookview.open .spread,.bookview.solo .spread{transform:translateX(calc(var(--bw)*-.5))}
+.bookview.open .lid{opacity:0;pointer-events:none;transition:transform .9s cubic-bezier(.6,0,.25,1),opacity .22s .38s}
 .bookview.solo .lid{opacity:0;pointer-events:none;transition:transform .9s cubic-bezier(.6,0,.25,1),opacity .4s}
 .bookview .lid{transition:transform .9s cubic-bezier(.6,0,.25,1),opacity .4s}
 .bv-wrap{position:relative;place-self:center;display:block;line-height:0}
