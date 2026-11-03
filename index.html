@@ -456,6 +456,7 @@ main{position:relative}
 
 
 /* ---- textured cover skins ---- */
+@media (max-width:640px){.p-map .wrap,.p-crew .wrap,.p-vault .wrap{padding-top:calc(78px + env(safe-area-inset-top,0px))}.map-head,.crew-head{margin-bottom:14px}.vault-head{margin-bottom:22px}.map-head h1,.crew-head h1,.vault-head h1{margin-top:2px}.map-head p,.crew-head p,.vault-head p{margin-top:4px;font-size:15px}.riverrun{padding-top:96px!important}}
 #books .book{animation:bobBook 5s ease-in-out infinite;border-radius:6px 12px 12px 6px;box-shadow:0 0 0 2px rgba(255,255,255,.9),0 0 18px 6px rgba(255,255,255,.4),0 0 48px 16px rgba(255,255,255,.2)}
 #books .book:nth-child(2){animation-delay:-1.7s;animation-duration:4.6s}
 #books .book:nth-child(3){animation-delay:-3.3s;animation-duration:5.4s}
@@ -549,7 +550,6 @@ main{position:relative}
       <div class="mist" aria-hidden="true"><i></i><i></i><i></i></div>
             <div class="mood" id="mood" aria-hidden="true"></div>
       <div class="vignette" aria-hidden="true"></div>
-      <div class="bars" id="bars" aria-hidden="true"></div>
       <div class="d-title" id="dTitle"><img src="img/logo-open.webp" alt="Footy Footy" width="1381" height="999">
         <div class="books" id="books">
           <button class="book" type="button" data-src="media/opening.mp4" data-title="Splash Landing" data-blurb="Rule one of waterfalls: never check the depth first." aria-label="Open book 1: Splash Landing"><span class="pages"></span><span class="cover"><span class="win"><video src="media/opening.mp4" muted loop playsinline autoplay preload="metadata"></video></span><span class="ttl">Splash Landing</span></span></button>
@@ -868,7 +868,7 @@ main{position:relative}
 
   /* ---------------- HOME: descent ---------------- */
   const descent=$('#ride-down'), valley=$('#valley'), pines=$('#pines'), bridges=$('#bridges');
-  const dTitle=$('#dTitle'), bars=$('#bars'), peek=$('#peek');
+  const dTitle=$('#dTitle'), peek=$('#peek');
   const waypoints=$$('.waypoint'), IW=768, IH=1376, rider=$('#rider');
   const RIVER=[686,686,686,686,686,686,686,686,686,686,686,685,678,676,673,670,663,655,641,640,640,640,643,664,662,634,621,617,600,562,493,474,454,432,411,388,358,326,294,262,232,203,174,235,260,252,208,191,209,208,178,174,157,164,192,244,284,315,322,312,282,228,192,194,197,199,202,205,207,211,216,221,226,231,236,241,247,255,266,276,288,299,311,326,350,376,401,426,441,442,432,404,368,321,312,301,291,282,280]; let W,H,LW,LH,maxPan;
   function size(){
@@ -883,7 +883,6 @@ main{position:relative}
     valley.style.transform=bridges.style.transform=`translate3d(0,${-pan}px,0) scale(${zoom})`; valley.style.transformOrigin=bridges.style.transformOrigin=`50% ${pan+H/2}px`;
     pines.style.transform=`translate3d(0,${-pan*1.1}px,0) scale(${zoom*(1+.18*e)})`; pines.style.transformOrigin=`50% ${pan*1.1+H}px`; pines.style.opacity=1-clamp(((pan+H)/(LW/IW)-1000)/260);
     const t=clamp((p-.06)/.18); dTitle.style.opacity=1-t; dTitle.style.pointerEvents=t>.5?'none':'auto'; dTitle.style.transform=`translate(-50%,${-t*80}px) scale(${1+t*.2})`;
-    bars.style.setProperty('--bar',`${Math.sin(clamp(p/.2)*Math.PI/2)*Math.min(56,H*.07)}px`);
     waypoints.forEach(w=>w.classList.toggle('on',p>=+w.dataset.from&&p<+w.dataset.to));
     const k=clamp((p-.86)/.11);
     view.p=p; view.pan=pan; view.zoom=zoom; renderExtras(p,pan);
