@@ -562,9 +562,9 @@ main{position:relative}
   <section class="descent" id="ride-down" aria-label="Fly down the valley">
     <div class="stage" id="stage">
       <div class="layer" id="valley">
-        <div class="blk top"><img src="/img/valley.webp" alt="A hand-drawn mountain valley with running waterfalls and turquoise river lanes through pine forest." width="768" height="1376"><video class="hv" src="/media/valley-hero.mp4" muted loop playsinline autoplay preload="auto" aria-hidden="true"></video></div>
-        <div class="blk low"><img src="/img/lower2.webp" alt="Further down the valley: rock spires with rope bridges, a stone arch, a boulder island, a water-wheel mill, a treehouse and cave tunnels." width="768" height="1376"><video class="hv" src="/media/lower2-loop-480p.mp4" muted loop playsinline autoplay preload="auto" aria-hidden="true"></video></div>
-        <div class="blk low3"><img src="/img/canyon.webp" alt="The red-rock canyon: a wide waterfall drops into a gorge with a cabin, a rope bridge and a mine-cart track along the cliff." width="768" height="1376"><video class="hv" src="/media/canyon-loop-480p.mp4" muted loop playsinline autoplay preload="auto" aria-hidden="true"></video></div>
+        <div class="blk top"><img src="/img/valley.webp" alt="A hand-drawn mountain valley with running waterfalls and turquoise river lanes through pine forest." width="768" height="1376"><video class="hv" src="/media/valley-hero.mp4" muted loop playsinline preload="auto" aria-hidden="true"></video></div>
+        <div class="blk low"><img src="/img/lower2.webp" alt="Further down the valley: rock spires with rope bridges, a stone arch, a boulder island, a water-wheel mill, a treehouse and cave tunnels." width="768" height="1376"><video class="hv" src="/media/lower2-loop-480p.mp4" muted loop playsinline preload="none" aria-hidden="true"></video></div>
+        <div class="blk low3"><img src="/img/canyon.webp" alt="The red-rock canyon: a wide waterfall drops into a gorge with a cabin, a rope bridge and a mine-cart track along the cliff." width="768" height="1376"><video class="hv" src="/media/canyon-loop-480p.mp4" muted loop playsinline preload="none" aria-hidden="true"></video></div>
       </div>
       <canvas id="snow" aria-hidden="true"></canvas>
       <div class="layer" id="pines"><img src="/img/pines.webp" alt="" width="768" height="1376"></div>
@@ -615,8 +615,8 @@ main{position:relative}
         <div class="gb-frame" id="gbFrame" aria-label="The whole valley, from the peaks to the canyon. Drag or scroll to move through it.">
           <div class="gb-reel" id="gbReel">
             <div class="gb-blk" data-y="0"><img src="/img/valley.webp" alt=""><video src="/media/valley-hero.mp4" muted loop playsinline preload="metadata"></video></div>
-            <div class="gb-blk fade" data-y="896"><img src="/img/lower2.webp" alt=""><video src="/media/lower2-loop-480p.mp4" muted loop playsinline preload="metadata"></video></div>
-            <div class="gb-blk fade" data-y="1792"><img src="/img/canyon.webp" alt=""><video src="/media/canyon-loop-480p.mp4" muted loop playsinline preload="metadata"></video></div>
+            <div class="gb-blk fade" data-y="896"><img src="/img/lower2.webp" alt=""><video src="/media/lower2-loop-480p.mp4" muted loop playsinline preload="none"></video></div>
+            <div class="gb-blk fade" data-y="1792"><img src="/img/canyon.webp" alt=""><video src="/media/canyon-loop-480p.mp4" muted loop playsinline preload="none"></video></div>
           </div>
           <div class="gb-track" aria-hidden="true"><div class="gb-thumb" id="gbThumb"></div></div>
           <span class="gb-tag" id="gbTag">The Peaks</span>
@@ -701,7 +701,7 @@ main{position:relative}
 
 <!-- ============ 4. CREW ============ -->
 <section class="page p-finale" id="finale" data-name="Finish" hidden>
-  <div class="fin-bg"><video class="fin-blur" src="/media/ending.mp4" muted loop playsinline preload="auto" aria-hidden="true"></video><video id="fVid" src="/media/ending.mp4" poster="/media/ending-poster.jpg" muted loop playsinline preload="auto" aria-label="Footy Footy ending: sunrise over the valley and the logo"></video></div>
+  <div class="fin-bg"><video class="fin-blur" src="/media/ending.mp4" muted loop playsinline preload="none" aria-hidden="true"></video><video id="fVid" src="/media/ending.mp4" poster="/media/ending-poster.jpg" muted loop playsinline preload="none" aria-label="Footy Footy ending: sunrise over the valley and the logo"></video></div>
   <div class="fin-shade" aria-hidden="true"></div>
   <div class="wrap">
     <div class="fin-copy">
@@ -1207,7 +1207,7 @@ main{position:relative}
 
   /* ---------------- FINALE ---------------- */
   const fVid=$('#fVid');
-    onShow.finale=()=>{ $$('#finale video').forEach(v=>{ v.muted=true; v.currentTime=0; v.play().catch(()=>{}); }); };
+    onShow.finale=()=>{ $$('#finale video').forEach(v=>{ v.preload='auto'; v.muted=true; v.currentTime=0; v.play().catch(()=>{}); }); };
 
   let ticking=false;
   addEventListener('scroll',()=>{ if(!ticking){ ticking=true; requestAnimationFrame(()=>{ ticking=false; renderHero(); }); } },{passive:true});
