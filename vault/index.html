@@ -29,6 +29,7 @@
 <script type="application/ld+json">{"@context":"https://schema.org","@graph":[{"@type":"Organization","@id":"https://footyfooty.com/#org","name":"Footy Footy","url":"https://footyfooty.com/","logo":"https://footyfooty.com/img/apple-touch-icon.png","sameAs":["https://www.instagram.com/footyfootycom/","https://www.tiktok.com/@footyfootycom","https://x.com/FootyFootyCom","https://www.pinterest.com/FootyFooty/","https://www.youtube.com/@FootyFootyfun"]},{"@type":"WebSite","@id":"https://footyfooty.com/#site","url":"https://footyfooty.com/","name":"Footy Footy","publisher":{"@id":"https://footyfooty.com/#org"},"inLanguage":"en"},{"@type":"CreativeWorkSeries","name":"Footy Footy","description":"A cartoon adventure series about Footy, a fluffy white mascot riding a turtle boat down a mountain river valley with his crew.","url":"https://footyfooty.com/","publisher":{"@id":"https://footyfooty.com/#org"},"character":[{"@type":"Person","name":"Footy"}]}]}</script>
 <script type="application/ld+json">{"@context": "https://schema.org", "@type": "BreadcrumbList", "itemListElement": [{"@type": "ListItem", "position": 1, "name": "Footy Footy", "item": "https://footyfooty.com/"}, {"@type": "ListItem", "position": 2, "name": "The Vault", "item": "https://footyfooty.com/vault/"}]}</script>
 <style>:root{padding-top:env(safe-area-inset-top,0px);padding-bottom:env(safe-area-inset-bottom,0px)}body{margin:0;font:14px/1.4 system-ui,sans-serif}img{max-width:100%}[hidden]{display:none!important}</style>
+<script id="gc-js" data-goatcounter="https://footyfooty.goatcounter.com/count" async src="//gc.zgo.at/count.js"></script>
 </head><body>
 <style>
 /* Layout: three stops down the river, each its own visual world, reached from a wooden signpost in the corner.
@@ -916,7 +917,7 @@ main{position:relative}
     busy=false;
   }
   const idFromPath=()=>{ let pth=location.pathname; if(!pth.endsWith('/')) pth+='/'; return BYPATH[pth]||'home'; };
-  document.addEventListener('click',e=>{ const a=e.target.closest('a[href]'); if(!a||e.metaKey||e.ctrlKey||e.shiftKey||a.target==='_blank') return; const id=BYPATH[a.getAttribute('href')]; if(!id) return; e.preventDefault(); if(id!==current){ history.pushState({id},'',PATHS[id]); travel(id); } });
+  document.addEventListener('click',e=>{ const a=e.target.closest('a[href]'); if(!a||e.metaKey||e.ctrlKey||e.shiftKey||a.target==='_blank') return; const id=BYPATH[a.getAttribute('href')]; if(!id) return; e.preventDefault(); if(id!==current){ history.pushState({id},'',PATHS[id]); if(window.goatcounter&&window.goatcounter.count) window.goatcounter.count({path:PATHS[id]}); travel(id); } });
   addEventListener('popstate',()=>travel(idFromPath()));
   addEventListener('hashchange',()=>{ const h=location.hash.slice(1); if(PATHS[h]){ history.replaceState({id:h},'',PATHS[h]); travel(h); } });
 
